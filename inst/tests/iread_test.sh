@@ -9,6 +9,7 @@ conda activate py2718_iread
 #---------
 # run test
 #---------
+export PATH="$HOME/iread:$PATH"
 chmod -R 755 ./iread/
 cd ./iread
 python iread.py data/mouse_test.bam meta/intron_mouse_3875.bed -o \
