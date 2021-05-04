@@ -88,8 +88,7 @@ colnames(testRef)
 #----------------------
 # install genome bioc library
 # note: large file download (677.3 MB)
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
 
 # import the genome
