@@ -2,8 +2,16 @@
 
 # Author: Sean Maden
 #
-# Set up conda environments for retained intron tools.
+# Set up conda environments for retained intron detection tools.
+# 
+# Notes:
+# 
+# * Setup is expedited by installing shared dependencies once and 
+#   cloning the consensus environment for specific tools.
 #
+# * At any time, use `conda info --envs` to show all available 
+#   environments.
+# 
 
 conda update conda
 conda install python=3.7.0
@@ -11,23 +19,19 @@ conda install python=2.7.18
 conda install r=3.5.1
 conda install -c bioconda bioconductor-biocinstaller
 
-#--------------------
-# manage python3 envs
-#--------------------
+#-------------------
+# manage python envs
+#-------------------
+
+# python3 envs
 conda create -n py370 python=3.7.0
 # clone for preprocessing
 conda create --name py370_preprocess --clone py370
 
-conda info --envs # show all envs
-
-#-------------------
-# manage python2 envs
-#-------------------
+# python 2 envs
 conda create -n py2718 python=2.7.18
 # clone for iread
 conda create --name py2718_iread --clone py2718
-
-conda info --envs # show all envs
 
 #--------------
 # manage r envs
@@ -49,8 +53,6 @@ conda install -c conda-forge/label/gcc7 r-data.table=1.14.0
 # clone r v3### env for sirfinder, kma
 conda create --name r351_sirfinder --clone r351
 conda create --name r351_kma --clone r351
-
-conda info --envs # show all envs
 
 #---------------------
 # preprocess env setup
@@ -77,11 +79,11 @@ conda deactivate
 #------------------------
 conda activate r403_superintronic
 # dependencies
-conda install -c bioconda bioconductor-plyranges
-conda install -c bioconda bioconductor-genomicfeatures
-conda install -c conda-forge r-devtools
-conda install -c conda-forge r-patchwork
-conda install -c conda-forge r-ggplot2
+conda install -c bioconda bioconductor-plyranges=1.10.0
+conda install -c bioconda bioconductor-genomicfeatures=1.42.2
+conda install -c conda-forge r-devtools=2.4.0
+conda install -c conda-forge r-patchwork=1.1.1
+conda install -c conda-forge r-ggplot2=3.3.3
 # install superintronic
 R
 devtools::install_github("sa-lee/superintronic", build_vignette = FALSE)
@@ -97,8 +99,8 @@ git clone https://github.com/genemine/iread/
 # iread dependencies
 conda install -c bioconda samtools=1.2
 conda install -c bioconda bedops=2.4.20
-conda install -c conda-forge argparse
-conda install -c bioconda perl-parallel-forkmanager
+conda install -c conda-forge argparse=1.4.0
+conda install -c bioconda perl-parallel-forkmanager=2.02
 
 #--------------------
 # sirfinder env setup
@@ -106,7 +108,7 @@ conda install -c bioconda perl-parallel-forkmanager
 conda activate r351_sirfinder
 # dependencies
 # conda install -c conda-forge/label/gcc7 r-devtools # to install from github
-conda install -c conda-forge/label/gcc7 r-rfast
+conda install -c conda-forge/label/gcc7 r-rfast=1.9.5
 conda install -c conda-forge/label/gcc7 r-rlang=0.4.10
 
 R 
