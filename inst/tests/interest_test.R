@@ -10,6 +10,10 @@
 
 library(IntEREst)
 
+#---------------------
+# prep annotation data
+#---------------------
+
 tmpGen<-u12[u12[,"gene_name"]=="RHBDD3",] # data for single gene
 dim(tmpGen)
 # [1] 15 16
@@ -78,4 +82,18 @@ colnames(testRef)
 # [5] "int_ex"                   "int_ex_num"
 # [7] "collapsed_transcripts_id" "collapsed_transcripts"
 # [9] "int_type"
+
+#----------------------
+# get human genome hg19
+#----------------------
+# install genome bioc library
+# note: large file download (677.3 MB)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
+
+# import the genome
+BSgenome.Hsapiens.UCSC.hg19 <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
+
+
 
