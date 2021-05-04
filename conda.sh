@@ -43,9 +43,12 @@ conda create --name r403_interest --clone r403
 conda create --name r403_superintronic --clone r403
 
 # make r v3### env
-conda create -n r351 r=3.5.1
-# clone r v3### env for sirfinder
+conda create -n r351 r=3.5.1; conda attach r351
+conda install -c conda-forge/label/gcc7 r-devtools=2.0.1
+conda install -c conda-forge/label/gcc7 r-data.table=1.14.0
+# clone r v3### env for sirfinder, kma
 conda create --name r351_sirfinder --clone r351
+conda create --name r351_kma --clone r351
 
 conda info --envs # show all envs
 
@@ -54,9 +57,9 @@ conda info --envs # show all envs
 #---------------------
 conda activate py370_preprocess
 # dependencies
-conda install -c bioconda samtools
-conda install -c bioconda bowtie2
-conda install -c bioconda star
+conda install -c bioconda samtools=1.3.1
+conda install -c bioconda bowtie2=2.3.4.3
+conda install -c bioconda star=2.7.6a
 
 conda deactivate
 
@@ -97,18 +100,17 @@ conda install -c bioconda bedops=2.4.20
 conda install -c conda-forge argparse
 conda install -c bioconda perl-parallel-forkmanager
 
-#----------------------
-# SIRFindeR environment
-#----------------------
+#--------------------
+# sirfinder env setup
+#--------------------
 conda activate r351_sirfinder
 # dependencies
-conda install -c conda-forge/label/gcc7 r-devtools # to install from github
+# conda install -c conda-forge/label/gcc7 r-devtools # to install from github
 conda install -c conda-forge/label/gcc7 r-rfast
+conda install -c conda-forge/label/gcc7 r-rlang=0.4.10
 
-R
-
-conda install -c conda-forge/label/gcc7 r-devtools
-# devtools::install_github("lbroseus/SIRFindeR", build_vignette = TRUE)
+R 
+devtools::install_github("lbroseus/SIRFindeR", build_vignette = TRUE)
 
 # possible fixes for openmp error on sirfinder
 # note: may only be applicable for R v4###
@@ -117,6 +119,16 @@ conda install -c conda-forge/label/gcc7 r-devtools
 # conda install -c conda-forge openmp
 # conda install -c anaconda llvm-openmp # sirfinder dependency
 
+#--------------
+# kma env setup
+#--------------
+conda activate r351_kma
+# dependencies
+conda install -c conda-forge/label/gcc7 r-reshape2=1.4.3
+conda install -c conda-forge/label/gcc7 r-dplyr=0.7.8
+# get kma
+R
+devtools::install_github("https://github.com/adamtongji/kma")
 
 
 
