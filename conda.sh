@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# Author Sean Maden
+# Author: Sean Maden
 #
 # Set up conda environments for retained intron tools.
 #
@@ -97,25 +97,21 @@ conda install -c bioconda bedops=2.4.20
 conda install -c conda-forge argparse
 conda install -c bioconda perl-parallel-forkmanager
 
-# test iread
-# export PATH="$HOME/iread:$PATH"
-chmod -R 755 ./iread/
-cd ./iread
-python iread.py data/mouse_test.bam meta/intron_mouse_3875.bed -o \
-    tmp_output -t 62000000
-
 #----------------------
 # SIRFindeR environment
 #----------------------
 conda activate r351_sirfinder
 # dependencies
-conda install -c conda-forge r-devtools # to install from github
-conda install -c conda-forge r-rfast
+conda install -c conda-forge/label/gcc7 r-devtools # to install from github
+conda install -c conda-forge/label/gcc7 r-rfast
 
 R
-devtools::install_github("lbroseus/SIRFindeR", build_vignette = TRUE)
 
-# fixes for openmp error on sirfinder
+conda install -c conda-forge/label/gcc7 r-devtools
+# devtools::install_github("lbroseus/SIRFindeR", build_vignette = TRUE)
+
+# possible fixes for openmp error on sirfinder
+# note: may only be applicable for R v4###
 # conda install nomkl
 # conda install -c conda-forge libgomp
 # conda install -c conda-forge openmp
