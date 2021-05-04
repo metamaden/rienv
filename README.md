@@ -3,11 +3,11 @@
 Programmatic setup for retained intron detection tools with `conda`. This resource currently 
 supports environment setup for the following tools:
 
-* [IntEREst](https://bioconductor.org/packages/release/bioc/html/IntEREst.html), 
+* [IntEREst](https://bioconductor.org/packages/release/bioc/html/IntEREst.html)
 * [SIRFindeR](https://github.com/lbroseus/SIRFindeR/)
 * [superintronic](https://github.com/sa-lee/superintronic)
 * [iREAD](https://github.com/genemine/iread/)
-* [Keep Me Around](https://github.com/adamtongji/kma).
+* [Keep Me Around (KMA)](https://github.com/adamtongji/kma)
 
 # Make environments
 
