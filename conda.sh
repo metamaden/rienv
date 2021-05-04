@@ -2,23 +2,19 @@
 
 # Author: Sean Maden
 #
-# Set up conda environments for retained intron detection tools.
+# Programmatic setup of conda environments for retained intron detection 
+# tools. Setup is expedited by installing shared dependencies once and 
+# cloning the consensus environment for specific tools. At any time, use 
+# `conda info --envs` to show all available environments.
 # 
-# Notes:
-#
-# * Run setup programmatically, either by running this script, or by
-#   running `conda env create -f <env_yml_path>`, replacing <env_yml_path>
-#   with the path to one of the env.*.yml files at ./inst/yml/.
+# Run setup programmatically, either by running this script, or by
+# running `conda env create -f <env_yml_path>`, replacing <env_yml_path>
+# with the path to one of the env.*.yml files at ./inst/yml/.
 # 
-# * Setup is expedited by installing shared dependencies once and 
-#   cloning the consensus environment for specific tools.
-#
-# * At any time, use `conda info --envs` to show all available 
-#   environments.
+# On Windows, you may need to use `source activate <env_name>` and 
+# `source deactivate <env_name>` rather than `conda activate <env_name>` 
+# and `conda deactivate <env_name>`.
 # 
-# * On Windows, you may need to use `source activate <env_name>` and 
-#   `source deactivate <env_name>` rather than `conda activate <env_name>` 
-#   and `conda deactivate <env_name>`.
 
 conda update conda
 conda install python=3.7.0
@@ -78,26 +74,12 @@ conda deactivate
 # interest env setup
 #-------------------
 conda activate r403_interest
-# install tool
-# conda install -c bioconda bioconductor-interest
-
-conda install -c conda-forge r-isoband # for ggplot2
-conda install -c conda-forge r-latticeExtra # for Hmisc
-conda install -c conda-forge r-ggplot2 # for viridis
-conda install -c conda-forge r-viridis 
-conda install -c conda-forge r-ade4
-conda install -c bioconda bioconductor-genefilter # for DESeq2, DEXSeq
-conda install -c bioconda bioconductor-Hmisc # for DESeq2
-conda install -c bioconda bioconductor-RcppArmadillo # for DESeq2
-conda install -c bioconda bioconductor-DESeq2 # for DEXSeq, IntEREst
-conda install -c bioconda bioconductor-statmod # for DEXSeq
-conda install -c bioconda bioconductor-edgeR # for IntEREst
-conda install -c bioconda bioconductor-seqinr # for IntEREst
-conda install -c bioconda bioconductor-DEXSeq # for IntEREst
-
+# install dependencies
+conda install -c bioconda r-seqinr=4.2_5 # for IntEREst
+conda install -c bioconda bioconductor-edgeR=3.32.1 # for IntEREst
+conda install -c bioconda bioconductor-DEXSeq=1.36.0 # for IntEREst
 # install interest
-R
-BiocManager::install("IntEREst")
+conda install -c bioconda bioconductor-interest
 
 conda env export > env_interest.yml # export yml file
 
@@ -153,13 +135,6 @@ conda env export > env_sirfinder.yml # export yml file
 
 conda deactivate
 
-# possible fixes for openmp error on sirfinder
-# note: may only be applicable for R v4###
-# conda install nomkl
-# conda install -c conda-forge libgomp
-# conda install -c conda-forge openmp
-# conda install -c anaconda llvm-openmp # sirfinder dependency
-
 #--------------
 # kma env setup
 #--------------
@@ -174,6 +149,3 @@ devtools::install_github("https://github.com/adamtongji/kma")
 conda env export > env_kma.yml # export yml file
 
 conda deactivate
-
-
-
