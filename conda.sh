@@ -48,6 +48,8 @@ conda deactivate
 # clone r v4### env for interest and superintronic
 conda create --name r403_interest --clone r403
 conda create --name r403_superintronic --clone r403
+# 2 tools can share the same env
+conda create --name r403_interest_superintronic --clone r403 
 
 # make r v3### env
 conda create -n r351 r=3.5.1; conda attach r351
