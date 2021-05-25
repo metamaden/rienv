@@ -144,6 +144,11 @@ conda activate r351_kma
 # dependencies
 conda install -c conda-forge/label/gcc7 r-reshape2=1.4.3
 conda install -c conda-forge/label/gcc7 r-dplyr=0.7.8
+
+conda install pyfasta=0.5.2
+conda install biopython=1.78
+conda install pysam
+
 # get kma
 R
 devtools::install_github("https://github.com/adamtongji/kma")
