@@ -145,9 +145,14 @@ conda activate r351_kma
 conda install -c conda-forge/label/gcc7 r-reshape2=1.4.3
 conda install -c conda-forge/label/gcc7 r-dplyr=0.7.8
 
-conda install pyfasta=0.5.2
-conda install biopython=1.78
-conda install pysam
+# preprocessing dependencies
+python -m pip install biopython
+python -m pip install pyfasta
+python -m pip install pysam
+conda install -c bioconda bowtie2=2.3.4.3
+
+# quantification dependencies
+conda install -c bioconda express
 
 # get kma
 R
