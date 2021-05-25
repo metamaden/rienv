@@ -145,6 +145,9 @@ conda activate r351_kma
 conda install -c conda-forge/label/gcc7 r-reshape2=1.4.3
 conda install -c conda-forge/label/gcc7 r-dplyr=0.7.8
 
+# get fastq-dump to obtain sample fastqs
+conda install -c bioconda/label/cf201901 sra-tools
+
 # preprocessing dependencies
 python -m pip install pyfasta
 python -m pip install pysam
