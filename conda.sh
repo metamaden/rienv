@@ -146,9 +146,9 @@ conda install -c conda-forge/label/gcc7 r-reshape2=1.4.3
 conda install -c conda-forge/label/gcc7 r-dplyr=0.7.8
 
 # preprocessing dependencies
-python -m pip install biopython
 python -m pip install pyfasta
 python -m pip install pysam
+python -m pip install biopython==1.76
 conda install -c bioconda bowtie2=2.3.4.3
 
 # quantification dependencies
