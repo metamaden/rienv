@@ -48,6 +48,8 @@ conda deactivate
 # clone r v4### env for interest and superintronic
 conda create --name r403_interest --clone r403
 conda create --name r403_superintronic --clone r403
+# 2 tools can share the same env
+conda create --name r403_interest_superintronic --clone r403 
 
 # make r v3### env
 conda create -n r351 r=3.5.1; conda attach r351
@@ -145,6 +147,19 @@ conda activate r351_kma
 # dependencies
 conda install -c conda-forge/label/gcc7 r-reshape2=1.4.3
 conda install -c conda-forge/label/gcc7 r-dplyr=0.7.8
+
+# get fastq-dump to obtain sample fastqs
+conda install -c bioconda/label/cf201901 sra-tools
+
+# preprocessing dependencies
+python -m pip install pyfasta
+python -m pip install pysam
+python -m pip install biopython==1.76
+conda install -c bioconda bowtie2=2.3.4.3
+
+# quantification dependencies
+conda install -c bioconda express
+
 # get kma
 R
 devtools::install_github("https://github.com/adamtongji/kma")
