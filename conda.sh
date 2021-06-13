@@ -95,6 +95,9 @@ conda install -c bioconda bioconductor-genomicfeatures=1.42.2
 conda install -c conda-forge r-devtools=2.4.0
 conda install -c conda-forge r-patchwork=1.1.1
 conda install -c conda-forge r-ggplot2=3.3.3
+
+conda install -c anaconda gxx_linux-64
+
 # install superintronic
 R
 devtools::install_github("sa-lee/superintronic", build_vignette = FALSE)
